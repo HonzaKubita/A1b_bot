@@ -1,0 +1,6 @@
+FROM python:lates
+
+WORKDIR /usr/SPSE_bot/bot
+COPY ./* ./
+
+CMD ["python", "./main.py"]

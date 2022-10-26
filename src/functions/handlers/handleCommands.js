@@ -1,3 +1,4 @@
+const { REST, Routes } = require('discord.js');
 const fs = require('fs');
 
 module.exports = (client) => {
@@ -5,7 +6,7 @@ module.exports = (client) => {
     const commandFolders = fs.readdirSync('./src/commands');
     for (const folder of commandFolders) {
       const commandFiles = fs
-        .readFileSync(`./src/commands/${folder}`)
+        .readdirSync(`./src/commands/${folder}`)
         .filter((file) => file.endsWith(".js"));
 
       const { commands, commandArray} = client;
@@ -15,5 +16,21 @@ module.exports = (client) => {
         commandArray.push(command.data.toJSON());
       }
     }
-  }
-}
+
+    const clientId = '1033403513985847346';
+    const rest = new REST({ version: "10"}).setToken(process.env.DISCORD_TOKEN);
+
+    try {
+      console.log("Aplication commands refresh start");
+
+      await rest.put(Routes.applicationCommands(clientId), {
+        body: client.commandArray,
+      })
+
+      console.log("Aplication commands refresh done")
+
+    } catch (err) {
+      console.error(err);
+    }
+  };
+};

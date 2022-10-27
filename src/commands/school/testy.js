@@ -13,6 +13,10 @@ module.exports = {
     const embed = new EmbedBuilder()
       .setTitle("Seznam testů")
       .setColor(client.color)
+
+    if(!tableContent.rows[0]) {
+      embed.setDescription("Žádné testy nemáme")
+    }
       
     for (const test of tableContent.rows) {
       embed.addFields({
@@ -21,6 +25,7 @@ module.exports = {
           Popis: ${test.description}
           Predmět: ${test.subject}
           Kdy: <t:${Math.floor(new Date(test.date).getTime() / 1000)}>
+          Id: ${test.id}
         `
       })
     }

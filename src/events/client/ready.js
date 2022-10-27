@@ -15,5 +15,7 @@ module.exports = {
       ],
       status: "online",
     })
+    // client.cleanDB(client); // For testing
+    // client.pingWithUpcoming(client); // For testing
   }
 }

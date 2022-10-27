@@ -1,8 +1,7 @@
 const fs = require('fs');
 require('dotenv').config();
 
-const db_Client = require('pg').Client
-const db = new db_Client()
+const db = require('./db');
 
 const TOKEN = process.env.DISCORD_TOKEN;
 const { Client, Collection, GatewayIntentBits } = require('discord.js');

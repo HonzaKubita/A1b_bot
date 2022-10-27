@@ -3,14 +3,18 @@ services:
   node:
     restart: always
     build: .
-  mongo:
-    image: mongo
+    depends_on:
+      - db
+  db:
+    image: postgres
+    restart: always
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: rootpassword
+      - POSTGRES_USER=${PGUSER}
+      - POSTGRES_PASSWORD=${PGPASSWORD}
     ports:
-      - 27017:27017
+      - '${PGPORT}:5432'
     volumes:
-      - mongodb:/data/db
+      - db:/var/lib/postgresql/data
 volumes:
-  mongodb:
+  db:
+    driver: local

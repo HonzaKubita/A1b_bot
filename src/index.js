@@ -1,10 +1,11 @@
-require('dotenv').config();
-const TOKEN = process.env.DISCORD_TOKEN;
-const DB_TOKEN = process.env.DB_TOKEN;
-const { connect } = require('mongoose');
-const { Client, Collection, GatewayIntentBits } = require('discord.js');
 const fs = require('fs');
+require('dotenv').config();
 
+const db_Client = require('pg').Client
+const db = new db_Client()
+
+const TOKEN = process.env.DISCORD_TOKEN;
+const { Client, Collection, GatewayIntentBits } = require('discord.js');
 const client = new Client({ intents: GatewayIntentBits.Guilds });
 client.commands = new Collection();
 client.commandArray = [];
@@ -27,6 +28,8 @@ client.handleComponents();
 console.log("Trying to login...");
 
 client.login(TOKEN);
-(async () => {
-  connect(DB_TOKEN).catch(console.error);
-})();
+
+db.connect(err => {
+  if (err) console.error(err);
+  else console.log("[DB STATUS]: Connected");
+});

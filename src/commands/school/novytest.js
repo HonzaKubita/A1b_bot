@@ -54,9 +54,13 @@ module.exports = {
 
     await db.query("INSERT INTO test(title, description, subject, date) VALUES ($1, $2, $3, $4)", queryValues, (err, res) => {
       if (err) {
-        embed.setTitle("Nastala chyba při přidávání testu do databáze")
+        embed
+          .setColor(0xff0000)
+          .setTitle("Nastala chyba při přidávání testu do databáze")
       } else {
-        embed.setTitle("Test přidán do databáze")
+        embed
+          .setColor(0x00ff00)
+          .setTitle("Test přidán do databáze")
       }
       interaction.reply({
         embeds:[embed]

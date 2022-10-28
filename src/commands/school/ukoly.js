@@ -15,7 +15,7 @@ module.exports = {
       .setColor(client.color)
 
     if(!tableContent.rows[0]) {
-      embed.setDescription("Žádné testy nemáme")
+      embed.setDescription("Žádné úkoly nemáme")
     }
       
     for (const homework of tableContent.rows) {

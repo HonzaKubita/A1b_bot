@@ -5,13 +5,18 @@ services:
     build: .
     depends_on:
       - db
+    environment:
+      PGHOST: "db"
+      PGUSER: "${PGUSER}"
+      PGPASSWORD: "${PGPASSWORD}"
+      PGDATABASE: "${PGDATABASE}"
   db:
     image: postgres
     restart: always
     environment:
-      - POSTGRES_USER=${PGUSER}
-      - POSTGRES_PASSWORD=${PGPASSWORD}
-      - POSTGRES_DB=${PGDATABASE}
+      POSTGRES_USER: "${PGUSER}"
+      POSTGRES_PASSWORD: "${PGPASSWORD}"
+      POSTGRES_DB: "${PGDATABASE}"
     ports:
       - '${PGPORT}:5432'
     volumes:

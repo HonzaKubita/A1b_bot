@@ -3,7 +3,7 @@ const db = require('../../db');
 
 module.exports = async (client) => {
   client.pingWithUpcoming = async (client) => {
-    const channel = await client.channels.cache.get('1035252491241132083');
+    const channel = await client.channels.cache.get('1035950809923465256');
     
     const upcomingTests = await db.query("SELECT * FROM test WHERE date=current_date + INTEGER '1'");
     const upcomingHomeworks = await db.query("SELECT * FROM homework WHERE due=current_date + INTEGER '1'");
@@ -52,7 +52,7 @@ module.exports = async (client) => {
     }
 
     await channel.send({
-      content: "**Seznam nadcházejících úkolů a testů (na zítra)** <@&1035264245966831616>",
+      content: "**Seznam nadcházejících úkolů a testů (na zítra)** <@&1035951118062190692>",
       embeds:[embedTests, embedHomeworks]
     })
   }

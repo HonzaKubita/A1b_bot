@@ -3,7 +3,7 @@ const { SlashCommandBuilder } = require('discord.js')
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('oznameni')
-    .setDescription('přepne jestli chcete dostávat oznámení o úkolech a testech'),
+    .setDescription('přepne jestli chceš dostávat oznámení o úkolech a testech'),
   async execute(interaction, client) {
 
     const role = interaction.guild.roles.cache.find(role => role.name === "skola oznameni");

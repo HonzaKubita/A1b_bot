@@ -51,8 +51,10 @@ module.exports = async (client) => {
       })
     }
 
+    const role = interaction.guild.roles.cache.find(role => role.name === "skola oznameni");
+
     await channel.send({
-      content: "**Seznam nadcházejících úkolů a testů (na zítra)** <@&1035951118062190692>",
+      content: `**Seznam nadcházejících úkolů a testů (na zítra)** <@&${role.id}>`,
       embeds:[embedTests, embedHomeworks]
     })
   }

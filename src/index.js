@@ -4,13 +4,18 @@ schedule = require('node-schedule');
 
 const db = require('./db');
 
-const TOKEN = process.env.DISCORD_TOKEN;
 const { Client, Collection, GatewayIntentBits } = require('discord.js');
 const client = new Client({ intents: GatewayIntentBits.Guilds });
 client.commands = new Collection();
 client.commandArray = [];
 client.buttons = new Collection();
 client.color = 0x00c2cb;
+
+client.DEV = process.env.DEV == "true";
+client.TOKEN = client.DEV ? process.env.TEST_DISCORD_TOKEN : process.env.DISCORD_TOKEN;
+client.id = client.DEV ? "1035956391967457311" : "1033403513985847346";
+
+console.warn("Running in DEV mode!");
 
 const funcionsFolder = fs.readdirSync(`./src/functions`);
 for (const folder of funcionsFolder) {
@@ -27,7 +32,7 @@ client.handleComponents();
 
 console.log("Trying to login...");
 
-client.login(TOKEN);
+client.login(client.TOKEN);
 
 db.connect(err => {
   if (err) console.error(err);

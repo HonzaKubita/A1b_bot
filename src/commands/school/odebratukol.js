@@ -20,6 +20,7 @@ module.exports = {
 
     await db.query("DELETE FROM homework WHERE id=$1", [homeworkId], (err, res) => {
       if (err) {
+        console.log(err);
         embed
           .setColor(0xff0000)
           .setTitle("Nastala chyba při odebírání úkolu z databáze")

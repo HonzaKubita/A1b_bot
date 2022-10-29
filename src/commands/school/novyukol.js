@@ -54,6 +54,7 @@ module.exports = {
 
     await db.query("INSERT INTO homework(title, description, subject, due) VALUES ($1, $2, $3, $4)", queryValues, (err, res) => {
       if (err) {
+        console.log(err);
         embed
           .setColor(0xff0000)
           .setTitle("Nastala chyba při přidávání úkolu do databáze")

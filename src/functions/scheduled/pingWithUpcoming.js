@@ -1,9 +1,20 @@
 const { EmbedBuilder } = require('discord.js');
 const db = require('../../db');
+const utils = require('../../utils');
 
 module.exports = async (client) => {
   client.pingWithUpcoming = async (client) => {
-    const channel = await client.channels.cache.get('1035950809923465256');
+
+    const holidays = await db.query(`SELECT * FROM event WHERE event.name='holiday' AND event.begining<=current_date AND event.end>current_date`);
+    const isHoliday = holidays.rows[0]?? false;
+    const today = utils.getDayName()
+
+    console.log("Prazdniny: " + isHoliday);
+    console.log("Today: " + today);
+
+    if (isHoliday || today == "Friday" || today == "Saturday") return;
+
+    const channels = await client.channels.cache.filter(channel => channel.name === "skola-oznameni");
     
     const upcomingTests = await db.query("SELECT * FROM test WHERE date=current_date + INTEGER '1'");
     const upcomingHomeworks = await db.query("SELECT * FROM homework WHERE due=current_date + INTEGER '1'");
@@ -51,11 +62,12 @@ module.exports = async (client) => {
       })
     }
 
-    const role = interaction.guild.roles.cache.find(role => role.name === "skola oznameni");
-
-    await channel.send({
-      content: `**Seznam nadcházejících úkolů a testů (na zítra)** <@&${role.id}>`,
-      embeds:[embedTests, embedHomeworks]
+    await channels.forEach(channel => {
+      const role = channel.guild.roles.cache.find(role => role.name === "skola oznameni");
+      channel.send({
+        content: `**Seznam nadcházejících úkolů a testů (na zítra)** <@&${role.id}>`,
+        embeds:[embedTests, embedHomeworks]
+      })
     })
   }
 }

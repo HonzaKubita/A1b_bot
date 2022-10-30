@@ -1,8 +1,9 @@
 version: '3'
 services:
   node:
-    restart: always
     build: .
+    container_name: "A1b_bot_node"
+    restart: always
     depends_on:
       - db
     environment:
@@ -12,6 +13,7 @@ services:
       PGDATABASE: "${PGDATABASE}"
   db:
     image: postgres
+    container_name: "A1b_bot_db"
     restart: always
     environment:
       POSTGRES_USER: "${PGUSER}"

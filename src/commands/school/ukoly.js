@@ -24,7 +24,7 @@ module.exports = {
         value: `
           Popis: ${homework.description}
           Predmět: ${homework.subject}
-          Do: <t:${Math.floor(new Date(homework.due).getTime() / 1000)}>
+          Do: <t:${Math.floor(new Date(homework.due).getTime() / 1000)}:D>
           Id: ${homework.id}
         `
       })

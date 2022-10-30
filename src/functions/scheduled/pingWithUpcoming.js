@@ -35,7 +35,7 @@ module.exports = async (client) => {
         value: `
           Popis: ${test.description}
           Predmět: ${test.subject}
-          Kdy: <t:${Math.floor(new Date(test.date).getTime() / 1000)}>
+          Kdy: <t:${Math.floor(new Date(test.date).getTime() / 1000)}:D>
         `
       })
     }
@@ -57,7 +57,7 @@ module.exports = async (client) => {
         value: `
           Popis: ${homework.description}
           Predmět: ${homework.subject}
-          Do: <t:${Math.floor(new Date(homework.due).getTime() / 1000)}>
+          Do: <t:${Math.floor(new Date(homework.due).getTime() / 1000)}:D>
         `
       })
     }

@@ -39,8 +39,8 @@ db.connect(err => {
   else console.log("[DB STATUS]: Connected");
 });
 
-schedule.scheduleJob("30 17 * * *", async () => {
-  // This function will run every day at 17:00
+schedule.scheduleJob("50 16 * * *", async () => {
+  // This function will run every day at 16:50 UCT (17:50 Europe/Prague)
   client.cleanDB(client);
   client.pingWithUpcoming(client);
 });

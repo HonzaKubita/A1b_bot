@@ -26,7 +26,7 @@ sudo docker compose up db -d
 printf "${GREEN}done\n"
 
 printf "${GRAY}[SCRIPT] ${PURPLE}Running ${ORANGE}sql ${PURPLE}script...\n"
-psql -U ${PGUSERNAME} -d ${PGDATABSE} -a -f ./sql/upgrade.sql
+sudo docker exec "A1b_bot_db" "psql -h ${PGHOST} -d ${PGDATABASE} -U ${PGUSER} -p ${PGPORT} -a -q -f ./sql/upgrade.sql"
 printf "${GREEN}done\n"
 
 printf "${CYAN}[DOCKER] ${PURPLE}Starting A1b_bot...\n"

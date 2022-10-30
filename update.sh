@@ -22,7 +22,7 @@ sudo docker compose build
 printf "${GREEN}done\n"
 
 printf "${CYAN}[DOCKER] ${PURPLE}Starting A1b_bot_db...\n"
-sudo docker compose up db
+sudo docker compose up db -d
 printf "${GREEN}done\n"
 
 printf "${GRAY}[SCRIPT] ${PURPLE}Running ${ORANGE}sql ${PURPLE}script...\n"

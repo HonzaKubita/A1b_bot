@@ -1,4 +1,4 @@
--- This file is run when you deploy the databse first time
+-- This file runs everytime you start the database
 
 CREATE TABLE IF NOT EXISTS "test" (
 	"id" SERIAL PRIMARY KEY,

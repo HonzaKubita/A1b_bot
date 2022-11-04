@@ -29,7 +29,7 @@ printf "${GRAY}[SCRIPT] ${PURPLE}Waiting 5 seconds for database to start...\n"
 sleep 5
 
 printf "${GRAY}[SCRIPT] ${PURPLE}Running ${ORANGE}sql ${PURPLE}script...\n"
-sudo docker exec A1b_bot_db psql -h ${PGHOST} -d ${PGDATABASE} -U ${PGUSER} -p ${PGPORT} -a -q -f /sql/upgrade.sql
+sudo docker exec A1b_bot_db psql -h ${PGHOST} -d ${PGDATABASE} -U ${PGUSER} -p ${PGPORT} -a -q -f /sql/start.sql
 printf "${GREEN}done\n"
 
 printf "${CYAN}[DOCKER] ${PURPLE}Starting A1b_bot...\n"

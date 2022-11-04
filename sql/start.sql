@@ -1,4 +1,4 @@
--- This file runs everytime you start the database
+-- This file runs everytime you create the database and everytime you run the update script
 
 CREATE TABLE IF NOT EXISTS "test" (
 	"id" SERIAL PRIMARY KEY,
@@ -14,6 +14,13 @@ CREATE TABLE IF NOT EXISTS "homework" (
 	"descriptio" TEXT,
 	"subject" TEXT,
 	"due" DATE
+);
+
+CREATE TABLE IF NOT EXISTS "event" (
+	"id" SERIAL PRIMARY KEY,
+	"name" TEXT,
+  "begining" DATE,
+	"end" DATE
 );
 
 CREATE TABLE IF NOT EXISTS "event" (

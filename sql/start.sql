@@ -23,9 +23,17 @@ CREATE TABLE IF NOT EXISTS "event" (
 	"end" DATE
 );
 
-CREATE TABLE IF NOT EXISTS "event" (
+CREATE TABLE IF NOT EXISTS "reactioncallback" (
 	"id" SERIAL PRIMARY KEY,
-	"name" TEXT,
-  "begining" DATE,
-	"end" DATE
+	"guild" TEXT,
+	"messageid" TEXT,
+  "callback" TEXT
+);
+
+CREATE TABLE IF NOT EXISTS "reactionrole" (
+	"id" SERIAL PRIMARY KEY,
+	"guild" TEXT,
+	"messageid" TEXT,
+  "emoji" TEXT,
+  "role" TEXT
 );

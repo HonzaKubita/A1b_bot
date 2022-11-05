@@ -1,14 +1,21 @@
 const fs = require('fs');
 require('dotenv').config();
-schedule = require('node-schedule');
+const schedule = require('node-schedule');
 
 const db = require('./db');
 
-const { Client, Collection, GatewayIntentBits } = require('discord.js');
-const client = new Client({ intents: GatewayIntentBits.Guilds });
+const { Client, Collection, GatewayIntentBits, Partials } = require('discord.js');
+
+const { Guilds, GuildMessages, GuildMessageReactions } = GatewayIntentBits;
+
+const client = new Client({ 
+  intents: [Guilds, GuildMessages, GuildMessageReactions],
+  partials: [Partials.Message, Partials.Channel, Partials.Reaction],
+ });
 client.commands = new Collection();
 client.commandArray = [];
 client.buttons = new Collection();
+client.reactionCallbacks = new Collection();
 client.color = 0x00c2cb;
 
 client.DEV = process.env.DEV == "true";
@@ -29,6 +36,7 @@ for (const folder of funcionsFolder) {
 client.handleEvents();
 client.handleCommands();
 client.handleComponents();
+client.handleReactionCallbacks();
 
 console.log("Trying to login...");
 

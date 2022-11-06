@@ -42,8 +42,8 @@ module.exports = {
 
     if (remove) {
       try {
-        await db.query(`DELETE FROM "reactioncallback" WHERE "guild"='${guild}' and "messageid"='${messageid}' and "callback"='reactionrole'`);
-        await db.query(`DELETE FROM "reactionrole" WHERE "guild"='${guild}' and "messageid"='${messageid}' and "emoji"='${emoji}' and "roleid"='${roleid}'`);
+        await db.query(`DELETE FROM "reactioncallback" WHERE id IN ( SELECT id from "reactioncallback" WHERE "guild"='${guild.id}' and "messageid"='${messageid}' and "callback"='reactionrole' LIMIT 1 )`);
+        await db.query(`DELETE FROM "reactionrole" WHERE "guild"='${guild.id}' and "messageid"='${messageid}' and "emoji"='${emoji}' and "roleid"='${roleid}'`);
         
         message.reactions.resolve(emoji).users.remove(client.id);
         

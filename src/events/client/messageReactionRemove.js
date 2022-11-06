@@ -1,7 +1,7 @@
 const db = require('../../db');
 
 module.exports = {
-  name: "messageReactionAdd",
+  name: "messageReactionRemove",
   async execute(reaction, user, client) {
     if (user.id === client.user.id) return;
 
@@ -17,7 +17,7 @@ module.exports = {
     const callback = reactionCallbacks.get(callbackName);
     if (!callback) return;
 
-    reaction.added = true;
+    reaction.added = false;
 
     callback.execute(reaction, user, client);
   }

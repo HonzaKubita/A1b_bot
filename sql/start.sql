@@ -35,5 +35,5 @@ CREATE TABLE IF NOT EXISTS "reactionrole" (
 	"guild" TEXT,
 	"messageid" TEXT,
   "emoji" TEXT,
-  "role" TEXT
+  "roleid" TEXT
 );

@@ -49,6 +49,10 @@ db.connect(err => {
 
 schedule.scheduleJob("00 16 * * *", async () => {
   // This function will run every day at 16:00 UCT (17:00 Europe/Prague)
-  client.cleanDB(client);
   client.pingWithUpcoming(client);
+});
+
+schedule.scheduleJob("00 00 * * *", async () => {
+  // This function will run every day at 00:00 UCT (1:00 Europe/Prague)
+  client.cleanDB(client);
 });

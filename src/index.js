@@ -22,7 +22,8 @@ client.DEV = process.env.DEV == "true";
 client.TOKEN = client.DEV ? process.env.TEST_DISCORD_TOKEN : process.env.DISCORD_TOKEN;
 client.id = client.DEV ? "1035956391967457311" : "1033403513985847346";
 
-console.warn("Running in DEV mode!");
+if (client.DEV)
+  console.warn("Running in DEV mode!");
 
 const funcionsFolder = fs.readdirSync(`./src/functions`);
 for (const folder of funcionsFolder) {
